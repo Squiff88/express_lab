@@ -50,7 +50,7 @@ app.get('/user/:id',(req,res) => {
 })
 	const queryString = 'SELECT * FROM users WHERE id=?';
 	const userID = req.params.id; 
-	connection.query(queryString,[userID] (err ,rows , fields) => {
+	connection.query(queryString,[userID], (err ,rows , fields) => {
 		if (err) {
 			console.log("Error has occured" + err);
 			return
