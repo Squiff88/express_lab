@@ -7,7 +7,7 @@ app.use(bodyParser.urlencoded({extended:false}));
 app.use(bodyParser.json());
 app.use(express.static(__dirname));
 
-
+app.use(express.static('./public/'))
 
 // DUMMY DATA 
 // const data = {
@@ -35,6 +35,19 @@ app.use(express.static(__dirname));
 // }
 
 
+// connection to mySQL
+const pool = dataBase.createPool({
+	connectionLimit : 10,
+	host: 'localhost',
+	user: 'root',
+	database:'myData'
+})
+
+function myConnection(){
+	return pool
+}
+
+
 app.get('/', (req, res) => res.send('Hello World!'))
 
 app.get('/users' , (req , res) => {
@@ -43,14 +56,10 @@ app.get('/users' , (req , res) => {
 
 // Connect to mysql
 app.get('/user/:id',(req,res) => {
-	const connection = dataBase.createConnection({
-	host: 'localhost',
-	user: 'root',
-	database:'myData'
-})
+	// targeting the table info and taking the id from users
 	const queryString = 'SELECT * FROM users WHERE id=?';
 	const userID = req.params.id; 
-	connection.query(queryString,[userID], (err ,rows , fields) => {
+	myConnection().query(queryString, [userID] , (err ,rows , fields) => {
 		if (err) {
 			console.log("Error has occured" + err);
 			return
@@ -62,7 +71,26 @@ app.get('/user/:id',(req,res) => {
 		const users = rows.map(user => {
 			return {firstName: user.firstname , lastName : user.lastname}
 		})
+
+		res.end()
 	})
+})
+
+
+app.post('/create_user' , (req, res) => {
+	let firstname = req.body.firstname;
+	let lastname = req.body.lastname;
+	const queryString = ("INSERT INTO users (name_of_column(firstname) , name_of_column(lastname) ) VALUES(? , ?)")
+	myConnection.query(queryString , [firstname , lastname] , (err , results , fields) => {
+		if (err) {
+			console.log('error has occured' + err);
+			req.sendStatus(500);
+			return
+		}
+		console.log('success !')
+	})
+	res.end()
+	console.log(req.body.firstname , req.body.lastname);
 })
 
 app.listen(3000)
