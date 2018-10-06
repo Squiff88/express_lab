@@ -1,0 +1,15 @@
+CREATE PROCEDURE defQuery
+AS
+BEGIN
+
+SELECT TOP 100 PP.FirstName , PP.LastName , PE.EmailAddress
+FROM Person.Person PP
+LEFT JOIN Person.EmailAddress PE
+ON PP.BusinessEntityID = PE.BusinessEntityID
+ORDER BY PP.FirstName
+
+END
+
+--------- EXECUTING THE STORED PROCEDURE --------------
+
+EXEC defQuery
