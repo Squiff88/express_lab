@@ -3,10 +3,10 @@ const sql = require('mssql')
 const app = express();
 
 const config = {
-	user: 'sa',
-    password: 'eraser',
-    server: 'SQUIFFY',
-    database: 'AdventureWorks2012',
+	user: '....',
+    password: '....',
+    server: '....',
+    database: '....',
     options: {
         encrypt: false // Use this if you're on Windows Azure
     }
