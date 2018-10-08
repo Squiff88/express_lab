@@ -1,15 +1,18 @@
-CREATE PROCEDURE defQuery
+------CREATE STORED PROCEDURE ANDRETURN A RANDOM ROW----------
+
+
+CREATE PROCEDURE upToTwentyFivev
 AS
 BEGIN
-
-SELECT TOP 100 PP.FirstName , PP.LastName , PE.EmailAddress
-FROM Person.Person PP
-LEFT JOIN Person.EmailAddress PE
-ON PP.BusinessEntityID = PE.BusinessEntityID
-ORDER BY PP.FirstName
-
+SELECT TOP 1 PP.FirstName , PP.LastName,HE.BirthDate , HE.Gender 
+FROM [HumanResources].[Employee] HE
+INNER JOIN [Person].[Person] PP
+ON PP.BusinessEntityID = HE.BusinessEntityID
+WHERE HE.BirthDate > '1975' and HE.BirthDate < '1980'
+ORDER BY NEWID()
 END
 
---------- EXECUTING THE STORED PROCEDURE --------------
 
-EXEC defQuery
+------- RUN THE STORE PROCEDURE ------------
+
+EXEC upToTwentyFive
