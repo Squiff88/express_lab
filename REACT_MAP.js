@@ -18,6 +18,10 @@ import Example from './navigation';
     "react-scripts": "2.0.4",
     "reactstrap": "^6.5.0"
 
+    
+ <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css">
+ <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/leaflet/1.3.1/leaflet.css">
+
 
 const { BaseLayer, Overlay } = LayersControl
 
