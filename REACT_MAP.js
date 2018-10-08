@@ -18,7 +18,15 @@ import Example from './navigation';
     "react-scripts": "2.0.4",
     "reactstrap": "^6.5.0"
 
-    
+
+const app = (
+    <BrowserRouter>
+       <App />
+     </BrowserRouter>
+  )
+
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css">
  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/leaflet/1.3.1/leaflet.css">
 
